@@ -1,25 +1,19 @@
-FROM node:18-slim AS builder
+FROM public.ecr.aws/lambda/nodejs:18 AS builder
 
-WORKDIR /app
+WORKDIR /var/task
 
-COPY package.json .
-
-RUN npm i -f
+COPY package.json ./
+RUN npm install
 
 COPY . .
 
-USER root
+# Final stage - use the same base image
+FROM public.ecr.aws/lambda/nodejs:18
 
-FROM amazon/aws-lambda-nodejs
+WORKDIR ${LAMBDA_TASK_ROOT}
 
-ENV PORT=5000
+# Copy from builder stage
+COPY --from=builder /var/task ${LAMBDA_TASK_ROOT}
 
-COPY --from=builder /app/ ${LAMBDA_TASK_ROOT}
-COPY --from=builder /app/node_modules ${LAMBDA_TASK_ROOT}/node_modules
-COPY --from=builder /app/package.json ${LAMBDA_TASK_ROOT}
-COPY --from=builder /app/package-lock.json ${LAMBDA_TASK_ROOT}
-
-EXPOSE 5000
-
+# Set the CMD to your handler
 CMD [ "lambda.handler" ]
-

@@ -2,3 +2,5 @@
 .env
 Dockerfile
 scripts
+.vscode
+.vscode/** */

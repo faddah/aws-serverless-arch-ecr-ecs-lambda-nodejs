@@ -1,0 +1,9 @@
+version = 0.1
+[default.deploy.parameters]
+stack_name = "sam-lambda-practice-app"
+resolve_s3 = true
+s3_prefix = "sam-lambda-practice-app"
+region = "us-west-2"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+image_repositories = ["MyLambdaFunction=415740581749.dkr.ecr.us-west-2.amazonaws.com/samlambdapracticeapp2e24cfc9/mylambdafunctionf91cd224repo"]
