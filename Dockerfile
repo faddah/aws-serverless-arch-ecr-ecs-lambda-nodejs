@@ -1,4 +1,4 @@
-FROM public.ecr.aws/lambda/nodejs:18 AS builder
+FROM public.ecr.aws/lambda/nodejs:24 AS builder
 
 WORKDIR /var/task
 
