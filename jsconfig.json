@@ -2,10 +2,12 @@
   "compilerOptions": {
     "checkJs": true, // Enables type checking for JavaScript files
     "module": "commonjs", // Jest uses CommonJS
-    "baseUrl": ".", // Base URL for resolving modules
+    "moduleResolution": "bundler", // Use Node.js module resolution
     "paths": {
-      "jest": ["node_modules/jest"]
+      "*": ["./*"], // Map all imports to project root
+      "jest": ["./node_modules/jest"]
     }
   },
-  "include": ["**/*.js"]
+  "include": ["**/*.js"],
+  "exclude": ["node_modules"]
 }
