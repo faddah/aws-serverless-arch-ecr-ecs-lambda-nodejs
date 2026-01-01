@@ -1,7 +1,12 @@
 const express = require("express");
 const cors = require("cors");
+const fs = require("fs");
+const path = require("path");
 
 const app = express();
+
+// Read CSS file once at startup
+const cssContent = fs.readFileSync(path.join(__dirname, "app.css"), "utf-8");
 
 app.use(cors());
 
@@ -10,34 +15,9 @@ app.get("/", (req, res, next) => {
   res.send(`
     <html>
       <head>
-        <title>Node Js Web Serve Version 1</title>
+        <title>Node JS Web Serve Version 1.1</title>
         <style>
-          body {
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-          }
-          h1 {
-            font-family: Arial, sans-serif;
-            font-size: 24px;
-            color: #333;
-            text-align: center;
-          }
-          p {
-            margin: 2rem 0;
-            text-align: center;
-            img {
-              border: 2px solid #ccc;
-              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-              transition: 0.3s;
-              border-radius: 25px;
-              max-width: 50%;
-              height: auto;
-            }
-          }
+          ${cssContent}
         </style>
       </head>
     <body>
