@@ -1,7 +1,7 @@
-const express = require("express");
-const cors = require("cors");
-const fs = require("fs");
-const path = require("path");
+import express, { Request, Response, NextFunction } from "express";
+import cors from "cors";
+import fs from "fs";
+import path from "path";
 
 const app = express();
 
