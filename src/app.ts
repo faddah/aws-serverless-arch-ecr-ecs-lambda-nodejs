@@ -10,7 +10,7 @@ const cssContent = fs.readFileSync(path.join(__dirname, "app.css"), "utf-8");
 
 app.use(cors());
 
-app.get("/", (res: any, next: any) => {
+app.get("/", (req: Request, res: Response, next: NextFunction): void => {
   res.setHeader("Content-type", "text/html");
   res.send(`
     <html>
