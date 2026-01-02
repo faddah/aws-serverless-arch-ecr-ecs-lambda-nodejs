@@ -1,0 +1,36 @@
+body {
+    background: #fcffd6;
+    background: linear-gradient(
+        180deg,
+        rgba(252, 255, 214, 1) 0%,
+        rgba(237, 221, 83, 1) 84%,
+        rgba(2, 184, 78, 1) 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 5%;
+}
+
+h1 {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+
+p {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+img {
+    border: 2px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border-radius: 25px;
+    max-width: 50%;
+    height: auto;
+}
