@@ -5,9 +5,10 @@ COPY package.json ${LAMBDA_TASK_ROOT}/
 
 # Install dependencies
 RUN npm install
+RUN npm run build
 
 # Copy the rest of the application
 COPY . ${LAMBDA_TASK_ROOT}/
 
 # Set the CMD to your handler
-CMD [ "lambda.handler" ]
+CMD [ "dist/lambda.js", "lambda.handler" ]
