@@ -33,4 +33,4 @@ app.get("/", (req: Request, res: Response, next: NextFunction): void => {
   next();
 });
 
-module.exports = app;
+export = app;
