@@ -6,7 +6,7 @@ Resources:
     Properties:
       PackageType: Image
       ImageConfig:
-        Command: [ "dist/lambda.js", "lambda.handler" ]
+        Command: [ "dist/lambda.handler" ]
       Role: arn:aws:iam::415740581749:role/lambda-execution-role
     Metadata:
       Dockerfile: Dockerfile
