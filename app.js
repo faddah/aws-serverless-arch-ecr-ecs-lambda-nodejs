@@ -21,9 +21,11 @@ app.get("/", (req, res, next) => {
         </style>
       </head>
     <body>
-      <h1>Hello world! I'm a Node/ExpressJS web server version 1...</h1>
+      <h1>Hello World! I'm a Node.JS / ExpressJS web server written in TypeScript version 2.0...</h1>
       <p>
-        <img src="https://www.w3schools.com/w3css/img_lights.jpg" alt="Lights" style="width:100%;max-width:600px">
+        <a href="https://science.nasa.gov/sun/auroras/" alt="Auroras - NASA Web Site & Best Scientific Explanation" target="_blank">
+          <img src="https://www.w3schools.com/w3css/img_lights.jpg" alt="Lights" style="width:100%;max-width:600px">
+        </a>
       </p>
     </body>
     </html>
