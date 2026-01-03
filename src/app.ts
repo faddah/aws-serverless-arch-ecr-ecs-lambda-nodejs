@@ -10,6 +10,22 @@ const cssContent = fs.readFileSync(path.join(__dirname, "app.css"), "utf-8");
 
 app.use(cors());
 
+// Image proxy endpoint to avoid CORS issues
+app.get("/proxy-image", async (req: Request, res: Response) => {
+  const imageUrl = "https://www.w3schools.com/w3css/img_lights.jpg";
+  try {
+    const response = await fetch(imageUrl);
+    const arrayBuffer = await response.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+    
+    res.setHeader("Content-Type", "image/jpeg");
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.send(buffer);
+  } catch (error) {
+    res.status(500).send("Error fetching image");
+  }
+});
+
 app.get("/", (req: Request, res: Response, next: NextFunction): void => {
   res.setHeader("Content-type", "text/html");
   res.send(`
