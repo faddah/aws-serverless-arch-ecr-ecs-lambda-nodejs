@@ -362,10 +362,11 @@ PORT=3300
 
 ISC
 
-## 👤 Author
+## 👤 Authors
 
 Original project by Prince Onukwili
 Repository: https://github.com/onukwilip/ci-cd-tutorial.git
+From his Free Code Camp article: [The Serverless Architecture Handbook: How to Publish a Node Js Docker Image to AWS ECR and Deploy the Container to AWS Lambda](https://www.freecodecamp.org/news/serverless-architecture-with-aws-lambda/).
 
 Updated version by [Faddah Wolf](https://github.com/faddah)  
 Repository: https://github.com/faddah/aws-serverless-arch-ecr-ecs-lambda-nodejs
