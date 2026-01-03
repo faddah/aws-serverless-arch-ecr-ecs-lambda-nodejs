@@ -1,10 +1,15 @@
 # AWS Lambda + ECR + Node.js/Express TypeScript Example
 
+|                                     |                                     |
+|:-----------------------------------:|:-----------------------------------:|
+| ![AWS Lambda Functions Logo Graphic](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb60Mv2e2TTbw4B9W1njsiH8IN1x49jkj8zA&s) | ![Docker Logo Graphic](https://www.clipartmax.com/png/small/124-1243662_docker-whale-logo-docker-png-logo.png) |
+
 This is an example project demonstrating a **Node.js/Express.js server** written in **TypeScript**, packaged as a **Docker container**, deployed to **AWS Elastic Container Registry (ECR)**, and executed via **AWS Lambda Functions**.
 
 ## 📋 Project Overview
 
-This project showcases:
+**This project showcases:**
+
 - ✅ A simple Express.js web server built with TypeScript
 - ✅ Docker containerization for AWS Lambda
 - ✅ Integration with AWS Lambda using `serverless-http`
@@ -86,7 +91,8 @@ Before you can create AWS resources, ensure you're logged in to AWS CLI with you
 aws configure
 ```
 
-You'll be prompted to enter:
+**You'll be prompted to enter:**
+
 - **AWS Access Key ID**: Your access key
 - **AWS Secret Access Key**: Your secret key
 - **Default region name**: Your preferred region (e.g., `us-west-2`)
@@ -360,7 +366,6 @@ ISC
 
 Original project by Prince Onukwili
 Repository: https://github.com/onukwilip/ci-cd-tutorial.git
-
 
 Updated version by [Faddah Wolf](https://github.com/faddah)  
 Repository: https://github.com/faddah/aws-serverless-arch-ecr-ecs-lambda-nodejs
