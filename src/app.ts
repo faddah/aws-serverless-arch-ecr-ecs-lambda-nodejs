@@ -13,17 +13,38 @@ app.use(cors());
 // Image proxy endpoint to avoid CORS issues
 app.get("/proxy-image", async (req: Request, res: Response) => {
   const imageUrl = "https://www.w3schools.com/w3css/img_lights.jpg";
+  
+  // Set CORS headers BEFORE any response
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Cache-Control", "public, max-age=86400"); // Cache for 24 hours
+  
   try {
     const response = await fetch(imageUrl);
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch image: ${response.status}`);
+    }
+    
     const arrayBuffer = await response.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
     
     res.setHeader("Content-Type", "image/jpeg");
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Content-Length", buffer.length.toString());
     res.send(buffer);
   } catch (error) {
+    console.error("Error fetching image:", error);
     res.status(500).send("Error fetching image");
   }
+});
+
+// Handle OPTIONS preflight for Safari
+app.options("/proxy-image", (req: Request, res: Response) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.sendStatus(200);
 });
 
 app.get("/", (req: Request, res: Response, next: NextFunction): void => {
@@ -31,13 +52,13 @@ app.get("/", (req: Request, res: Response, next: NextFunction): void => {
   res.send(`
     <html>
       <head>
-        <title>Node JS Web Serve Version 2.0.3</title>
+        <title>Node JS Web Serve Version 2.0.4</title>
         <style>
           ${cssContent}
         </style>
       </head>
     <body>
-      <h1>Hello World! I'm a Node.JS / ExpressJS Web Server, Version 2.0.3, written in TypeScript...</h1>
+      <h1>Hello World! I'm a Node.JS / ExpressJS Web Server, Version 2.0.4, written in TypeScript...</h1>
       <p>
         <a href="https://science.nasa.gov/sun/auroras/" alt="Auroras - NASA Web Site & Best Scientific Explanation" target="_blank">
           <img src="/proxy-image" alt="Lights" style="width:100%;max-width:600px" crossorigin="anonymous">
