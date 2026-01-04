@@ -8,6 +8,12 @@ const app = express();
 // Read CSS file once at startup
 const cssContent = fs.readFileSync(path.join(__dirname, "app.css"), "utf-8");
 
+// Read version from package.json
+const packageJson = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "..", "package.json"), "utf-8")
+);
+const version = packageJson.version;
+
 app.use(cors());
 
 // Image proxy endpoint to avoid CORS issues
@@ -55,13 +61,13 @@ app.get("/", (req: Request, res: Response, next: NextFunction): void => {
   res.send(`
     <html>
       <head>
-        <title>Node JS Web Serve Version 2.0.6</title>
+        <title>Node JS Web Serve Version ${version}</title>
         <style>
           ${cssContent}
         </style>
       </head>
     <body>
-      <h1>Hello World! I'm a Node.JS / ExpressJS Web Server, Version 2.0.6, written in TypeScript...</h1>
+      <h1>Hello World! I'm a Node.JS / ExpressJS Web Server, Version ${version}, written in TypeScript...</h1>
       <p>
         <a href="https://science.nasa.gov/sun/auroras/" alt="Auroras - NASA Web Site & Best Scientific Explanation" target="_blank">
           <img src="proxy-image" alt="Lights" style="width:100%;max-width:600px">
