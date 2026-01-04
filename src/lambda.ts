@@ -1,9 +1,10 @@
 import serverless from 'serverless-http';
 import app from './app';
 
-// Configure serverless-http to handle binary content types
+// Configure serverless-http for Lambda Function URLs
+// Lambda Function URLs automatically handle binary responses
 const handler: any = serverless(app, {
-  binary: ['image/*', 'image/jpeg', 'image/png', 'image/gif', 'image/webp']
+  binary: true  // Enable binary mode for all responses
 });
 
 module.exports.handler = handler;
