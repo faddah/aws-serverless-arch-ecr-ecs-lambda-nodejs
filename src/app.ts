@@ -61,7 +61,7 @@ app.get("/", (req: Request, res: Response, next: NextFunction): void => {
       <h1>Hello World! I'm a Node.JS / ExpressJS Web Server, Version 2.0.4, written in TypeScript...</h1>
       <p>
         <a href="https://science.nasa.gov/sun/auroras/" alt="Auroras - NASA Web Site & Best Scientific Explanation" target="_blank">
-          <img src="/proxy-image" alt="Lights" style="width:100%;max-width:600px" crossorigin="anonymous">
+          <img src="proxy-image" alt="Lights" style="width:100%;max-width:600px">
         </a>
       </p>
     </body>
