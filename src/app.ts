@@ -20,31 +20,30 @@ app.use(cors());
 app.get("/proxy-image", async (req: Request, res: Response) => {
   const imageUrl = "https://www.w3schools.com/w3css/img_lights.jpg";
   
-  // Set CORS headers BEFORE any response
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  res.setHeader("Cache-Control", "public, max-age=86400"); // Cache for 24 hours
-  
   try {
+    console.log("Fetching image from:", imageUrl);
     const response = await fetch(imageUrl);
     
     if (!response.ok) {
-      throw new Error(`Failed to fetch image: ${response.status}`);
+      console.error(`Failed to fetch image: ${response.status}`);
+      return res.status(500).send("Error fetching image");
     }
     
     const arrayBuffer = await response.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
     
-    // For Lambda, we need to set the content type and end the response properly
+    console.log(`Image fetched successfully, size: ${buffer.length} bytes`);
+    
+    // Set headers for image response
     res.setHeader("Content-Type", "image/jpeg");
     res.setHeader("Content-Length", buffer.length.toString());
+    res.setHeader("Cache-Control", "public, max-age=86400");
     
-    // Use res.end() instead of res.send() for binary data in Lambda
-    res.end(buffer, 'binary');
+    // Send the buffer directly
+    return res.status(200).end(buffer);
   } catch (error) {
     console.error("Error fetching image:", error);
-    res.status(500).send("Error fetching image");
+    return res.status(500).send("Error fetching image");
   }
 });
 
