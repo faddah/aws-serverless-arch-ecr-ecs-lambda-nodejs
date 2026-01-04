@@ -30,9 +30,12 @@ app.get("/proxy-image", async (req: Request, res: Response) => {
     const arrayBuffer = await response.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
     
+    // For Lambda, we need to set the content type and end the response properly
     res.setHeader("Content-Type", "image/jpeg");
     res.setHeader("Content-Length", buffer.length.toString());
-    res.send(buffer);
+    
+    // Use res.end() instead of res.send() for binary data in Lambda
+    res.end(buffer, 'binary');
   } catch (error) {
     console.error("Error fetching image:", error);
     res.status(500).send("Error fetching image");
