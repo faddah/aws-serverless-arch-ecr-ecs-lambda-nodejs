@@ -35,12 +35,14 @@ app.get("/proxy-image", async (req: Request, res: Response) => {
     console.log(`Image fetched successfully, size: ${buffer.length} bytes`);
     
     // Set headers for image response
-    res.setHeader("Content-Type", "image/jpeg");
-    res.setHeader("Content-Length", buffer.length.toString());
-    res.setHeader("Cache-Control", "public, max-age=86400");
-    
-    // Send the buffer directly
-    return res.status(200).end(buffer);
+res.writeHead(200, {
+  "Content-Type": "image/jpeg",
+  "Content-Length": buffer.length.toString(),
+  "Cache-Control": "public, max-age=86400",
+  "Accept-Ranges": "bytes"
+});
+res.write(buffer);
+res.end();
   } catch (error) {
     console.error("Error fetching image:", error);
     return res.status(500).send("Error fetching image");
