@@ -1,10 +1,10 @@
 body {
-    background: #fcffd6;
+    background: #FDF9C9;
     background: linear-gradient(
         180deg,
-        rgba(252, 255, 214, 1) 0%,
-        rgba(237, 221, 83, 1) 84%,
-        rgba(2, 184, 78, 1) 100%
+        rgba(253, 249, 201, 1) 0%,
+        rgba(163, 220, 255, 1) 65%,
+        rgba(3, 79, 56, 1) 100%
     );
     display: flex;
     flex-direction: column;
